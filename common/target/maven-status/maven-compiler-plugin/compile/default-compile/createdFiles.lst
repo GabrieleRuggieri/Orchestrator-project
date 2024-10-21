@@ -1,0 +1,12 @@
+com\patroclos\common\dto\PaymentRequestDTO.class
+com\patroclos\common\enums\OrderStatus.class
+com\patroclos\common\dto\InventoryRequestDTO.class
+com\patroclos\common\dto\OrchestratorResponseDTO.class
+com\patroclos\common\dto\OrderResponseDTO.class
+com\patroclos\common\enums\InventoryStatus.class
+com\patroclos\common\enums\PaymentStatus.class
+com\patroclos\inventory\dto\ItemDTO.class
+com\patroclos\common\dto\OrchestratorRequestDTO.class
+com\patroclos\common\dto\InventoryResponseDTO.class
+com\patroclos\common\dto\OrderRequestDTO.class
+com\patroclos\common\dto\PaymentResponseDTO.class
