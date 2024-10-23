@@ -1,23 +1,33 @@
 package com.patroclos.entity;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
-
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
-@Table("Items")
+
+@Entity
+@Table(name = "items")
 public class Item {
 
-	@Id
-    private UUID id;
-    private Integer itemId;
-    private Double price;
-    @Column("stock_available")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+    @Column(name = "uuid", unique = true)
+    private UUID uuid;
+    @Column(name = "item_id")
+    private Long itemId;
+    @Column(name = "price")
+    private BigDecimal price;
+    @Column(name = "stock_available")
     private Integer stockAvailable;
 }
