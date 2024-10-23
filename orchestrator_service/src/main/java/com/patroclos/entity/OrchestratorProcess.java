@@ -28,5 +28,5 @@ public class OrchestratorProcess {
     @Id
     private UUID id;
     private ProcessStatus status;
-    
+
 }

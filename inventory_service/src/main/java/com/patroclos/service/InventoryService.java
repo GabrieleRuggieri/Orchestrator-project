@@ -18,56 +18,54 @@ import java.util.UUID;
 @Service
 public class InventoryService {
 
-	private static org.slf4j.Logger Logger = LoggerFactory.getLogger(InventoryService.class);
+    private static org.slf4j.Logger Logger = LoggerFactory.getLogger(InventoryService.class);
 
-	@Autowired
-	private ItemRepository itemRepository;
+    @Autowired
+    private ItemRepository itemRepository;
 
-	private ModelMapper modelMapper = GlobalModelMapper.getModelMapper();
+    private ModelMapper modelMapper = GlobalModelMapper.getModelMapper();
 
-	public InventoryResponseDTO deductInventory(final InventoryRequestDTO requestDTO){
-		Item item = itemRepository.findById(requestDTO.getItemId()).block();
+    public InventoryResponseDTO deductInventory(final InventoryRequestDTO requestDTO) {
+        Item item = itemRepository.findById(requestDTO.getItemId()).block();
 
-		if (item == null)
-			throw new RuntimeException("Item not found");
+        if (item == null)
+            throw new RuntimeException("Item not found");
 
-		InventoryResponseDTO responseDTO = new InventoryResponseDTO();
-		responseDTO.setOrderId(requestDTO.getOrderId());
-		responseDTO.setCustomerId(requestDTO.getCustomerId());
-		responseDTO.setItemId(requestDTO.getItemId());
-		
-		if(item.getStockAvailable() > 0){
-			responseDTO.setStatus(InventoryStatus.INSTOCK);
-			item.setStockAvailable(item.getStockAvailable() - 1);	
-			itemRepository.save(item).block();
-			Logger.info("Item with id " + requestDTO.getItemId() + " deducted from stock");
-		}
-		else
-		{
-			responseDTO.setStatus(InventoryStatus.OUTOFSTOCK);
-			Logger.info("Item with id " + requestDTO.getItemId() + " is out of stock");
-		}
+        InventoryResponseDTO responseDTO = new InventoryResponseDTO();
+        responseDTO.setOrderId(requestDTO.getOrderId());
+        responseDTO.setCustomerId(requestDTO.getCustomerId());
+        responseDTO.setItemId(requestDTO.getItemId());
 
-		return responseDTO;
-	}
+        if (item.getStockAvailable() > 0) {
+            responseDTO.setStatus(InventoryStatus.INSTOCK);
+            item.setStockAvailable(item.getStockAvailable() - 1);
+            itemRepository.save(item).block();
+            Logger.info("Item with id " + requestDTO.getItemId() + " deducted from stock");
+        } else {
+            responseDTO.setStatus(InventoryStatus.OUTOFSTOCK);
+            Logger.info("Item with id " + requestDTO.getItemId() + " is out of stock");
+        }
 
-	public void addInventory(final InventoryRequestDTO requestDTO){
-		Item item = itemRepository.findById(requestDTO.getItemId()).block();
-		if (item == null)
-			throw new RuntimeException("Item not found");
+        return responseDTO;
+    }
 
-		item.setStockAvailable(item.getStockAvailable() + 1);	
-		itemRepository.save(item).block();
-		
-		Logger.info("Stock was updated as +1 availability for item with id " +  item.getItemId());
-	}
+    public void addInventory(final InventoryRequestDTO requestDTO) {
+        Item item = itemRepository.findById(requestDTO.getItemId()).block();
+        if (item == null)
+            throw new RuntimeException("Item not found");
 
-	public ItemDTO getItem(UUID itemId){
-		return getItemDTO(itemRepository.findById(itemId).block());
-	}
+        item.setStockAvailable(item.getStockAvailable() + 1);
+        itemRepository.save(item).block();
 
-	private ItemDTO getItemDTO(Item i) {
-		return modelMapper.map(i, ItemDTO.class);
-	}
+        Logger.info("Stock was updated as +1 availability for item with id " + item.getItemId());
+    }
+
+    public ItemDTO getItem(UUID itemId) {
+        return getItemDTO(itemRepository.findById(itemId).block());
+    }
+
+    private ItemDTO getItemDTO(Item i) {
+        return modelMapper.map(i, ItemDTO.class);
+    }
 
 }

@@ -15,7 +15,7 @@ import lombok.ToString;
 @Table(name = "orchestratorProcessStep")
 @Entity
 public class OrchestratorProcessStep {
-	
+
     @Id
     private UUID id;
     @Column("orchestratorProcess_id")

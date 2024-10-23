@@ -21,19 +21,19 @@ public class InventoryController {
 
     @Autowired
     private InventoryService inventoryService;
-    
+
     @GetMapping("/{itemId}")
-    public ItemDTO getItem(@PathVariable final UUID itemId){
+    public ItemDTO getItem(@PathVariable final UUID itemId) {
         return this.inventoryService.getItem(itemId);
     }
 
     @PostMapping("/deduct")
-    public InventoryResponseDTO deduct(@RequestBody final InventoryRequestDTO requestDTO){
+    public InventoryResponseDTO deduct(@RequestBody final InventoryRequestDTO requestDTO) {
         return this.inventoryService.deductInventory(requestDTO);
     }
 
     @PostMapping("/add")
-    public void add(@RequestBody final InventoryRequestDTO requestDTO){
+    public void add(@RequestBody final InventoryRequestDTO requestDTO) {
         this.inventoryService.addInventory(requestDTO);
     }
 
