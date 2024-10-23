@@ -2,28 +2,33 @@ package com.patroclos.entity;
 
 import java.util.UUID;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
-import jakarta.persistence.Entity;
 import lombok.Data;
 import lombok.ToString;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
-@Table(name = "orchestratorProcessStep")
+
 @Entity
+@Table(name = "orchestratorProcessStep")
 public class OrchestratorProcessStep {
 
     @Id
-    private UUID id;
-    @Column("orchestratorProcess_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String uuid;
+
+    @Column(name = "orchestratorProcess_id")
     private String orchestratorProcessId;
-    @Column("stepType")
+    @Column(name = "stepType")
     private String stepType;
     private String name;
     private String error;
-    @Column("statusStep")
+    @Column(name = "statusStep")
     private String statusStep;
 }

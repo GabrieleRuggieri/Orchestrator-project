@@ -1,32 +1,27 @@
 package com.patroclos.entity;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
-
-import com.patroclos.common.enums.OrderStatus;
 import com.patroclos.enums.ProcessStatus;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Transient;
-
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
-@Table(name = "orchestratorProcess")
+
 @Entity
+@Table(name = "orchestratorProcess")
 public class OrchestratorProcess {
 
     @Id
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+    private String uuid;
     private ProcessStatus status;
 
 }

@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.LoggerFactory;
 import com.patroclos.common.dto.InventoryRequestDTO;
 import com.patroclos.common.dto.OrchestratorRequestDTO;
@@ -21,9 +22,8 @@ import com.patroclos.service.OrchestratorService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@Slf4j
 public class OrderProcess extends Process {
-
-    private static org.slf4j.Logger Logger = LoggerFactory.getLogger(OrderProcess.class);
 
     public OrderProcess(OrchestratorService service, PaymentRequestDTO paymentRequest, InventoryRequestDTO inventoryRequestDTO) {
         super(service);
@@ -55,7 +55,7 @@ public class OrderProcess extends Process {
                 .onErrorResume(ex ->
                 {
                     ex.printStackTrace();
-                    Logger.info("Process Rollback");
+                    log.info("Process Rollback");
                     this.status = ProcessStatus.FAILED;
                     this.rollbackSteps = new LinkedList<ProcessStep>(this.steps);
                     this.rollbackSteps = this.rollbackSteps.stream()
@@ -80,7 +80,7 @@ public class OrderProcess extends Process {
                     return orchestratorService.saveProcess(this, requestDTO); //success
                 }))
                 .then(Mono.just(getOnFailResponseDTO(requestDTO)))
-                .doOnSuccess(s -> Logger.info("Saga Rollback Process Complete"));
+                .doOnSuccess(s -> log.info("Saga Rollback Process Complete"));
     }
 
     public OrchestratorResponseDTO getOnSuccessResponseDTO(OrchestratorRequestDTO requestDTO) {
