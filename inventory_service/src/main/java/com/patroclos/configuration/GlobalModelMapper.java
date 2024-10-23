@@ -1,26 +1,21 @@
 package com.patroclos.configuration;
 
+import lombok.Getter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 
 public class GlobalModelMapper {
 
-	private static ModelMapper modelMapper;
+    @Getter
+    private static final ModelMapper modelMapper = createModelMapper();
 
-	static {}
-
-	public static ModelMapper getModelMapper() {
-		if (modelMapper == null) {
-			ModelMapper modelMapper = new ModelMapper();
-			modelMapper.getConfiguration()
-			.setFieldMatchingEnabled(true)
-			.setMatchingStrategy(MatchingStrategies.STRICT)
-			.setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PRIVATE);
-			GlobalModelMapper.modelMapper = modelMapper;
-			return modelMapper;
-		}
-		else
-			return modelMapper;
-	}
+    private static ModelMapper createModelMapper() {
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration()
+                .setFieldMatchingEnabled(true)
+                .setMatchingStrategy(MatchingStrategies.STRICT)
+                .setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PRIVATE);
+        return modelMapper;
+    }
 
 }
