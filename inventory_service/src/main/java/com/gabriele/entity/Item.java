@@ -1,4 +1,4 @@
-package com.patroclos.entity;
+package com.gabriele.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,12 +22,12 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Column(name = "uuid", unique = true)
+    @Column(name = "uuid_item", unique = true)
     private UUID uuid;
-    @Column(name = "item_id")
-    private Long itemId;
     @Column(name = "price")
     private BigDecimal price;
     @Column(name = "stock_available")
     private Integer stockAvailable;
+    @Column(name = "state")
+    private Boolean state;
 }
