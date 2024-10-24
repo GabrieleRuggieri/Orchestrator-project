@@ -1,11 +1,9 @@
-package com.patroclos.controller;
+package com.gabriele.controller;
 
-import com.patroclos.common.dto.InventoryRequestDTO;
-import com.patroclos.common.dto.InventoryResponseDTO;
-import com.patroclos.inventory.dto.ItemDTO;
-import com.patroclos.service.InventoryService;
-
-import java.util.UUID;
+import com.gabriele.common.dto.InventoryRequestDTO;
+import com.gabriele.common.dto.InventoryResponseDTO;
+import com.gabriele.inventory.dto.ItemDTO;
+import com.gabriele.service.InventoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,18 +20,18 @@ public class InventoryController {
     @Autowired
     private InventoryService inventoryService;
 
-    @GetMapping("/{itemId}")
-    public ItemDTO getItem(@PathVariable final UUID itemId) {
-        return this.inventoryService.getItem(itemId);
+    @GetMapping("/{uuidItem}")
+    public ItemDTO getItem(@PathVariable String uuidItem) {
+        return this.inventoryService.getItem(uuidItem);
     }
 
     @PostMapping("/deduct")
-    public InventoryResponseDTO deduct(@RequestBody final InventoryRequestDTO requestDTO) {
+    public InventoryResponseDTO deduct(@RequestBody InventoryRequestDTO requestDTO) {
         return this.inventoryService.deductInventory(requestDTO);
     }
 
     @PostMapping("/add")
-    public void add(@RequestBody final InventoryRequestDTO requestDTO) {
+    public void add(@RequestBody InventoryRequestDTO requestDTO) {
         this.inventoryService.addInventory(requestDTO);
     }
 
