@@ -1,4 +1,4 @@
-package com.patroclos.common.dto;
+package com.gabriele.common.dto;
 
 import java.util.UUID;
 

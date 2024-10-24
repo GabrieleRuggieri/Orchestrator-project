@@ -1,15 +1,12 @@
-package com.patroclos.common.dto;
+package com.gabriele.common.dto;
 
 import lombok.Data;
 
 import java.util.UUID;
 
 @Data
-public class OrchestratorRequestDTO {
-
+public class PaymentRequestDTO {
     private Integer customerId;
-    private UUID itemId;
     private UUID orderId;
     private Double amount;
-
 }

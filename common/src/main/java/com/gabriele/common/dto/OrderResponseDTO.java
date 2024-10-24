@@ -1,11 +1,11 @@
-package com.patroclos.common.dto;
+package com.gabriele.common.dto;
 
 import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import com.patroclos.common.enums.OrderStatus;
+import com.gabriele.common.enums.OrderStatus;
 
 @Data
 public class OrderResponseDTO {

@@ -1,10 +1,10 @@
-package com.patroclos.common.dto;
+package com.gabriele.common.dto;
 
 import lombok.Data;
 
 import java.util.UUID;
 
-import com.patroclos.common.enums.PaymentStatus;
+import com.gabriele.common.enums.PaymentStatus;
 
 @Data
 public class PaymentResponseDTO {
