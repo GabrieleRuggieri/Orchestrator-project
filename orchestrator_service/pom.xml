@@ -8,7 +8,7 @@
 		<version>3.0.1</version>
 		<relativePath/> 
 	</parent>
-	<groupId>com.patroclos</groupId>
+	<groupId>com.gabriele</groupId>
 	<artifactId>orchestrator_service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>springboot3</name>

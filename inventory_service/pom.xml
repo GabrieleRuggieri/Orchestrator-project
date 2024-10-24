@@ -8,7 +8,7 @@
 		<version>3.0.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.patroclos</groupId>
+	<groupId>com.gabriele</groupId>
 	<artifactId>inventory-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>inventory service</name>
@@ -108,10 +108,11 @@
 		    <artifactId>modelmapper</artifactId>
 		    <version>3.1.1</version>
 	    </dependency>
-        <dependency>
-			<groupId>com.patroclos</groupId>
+		<dependency>
+			<groupId>com.gabriele</groupId>
 			<artifactId>common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 
