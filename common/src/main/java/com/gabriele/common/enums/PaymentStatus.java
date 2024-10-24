@@ -1,4 +1,4 @@
-package com.patroclos.common.enums;
+package com.gabriele.common.enums;
 
 public enum  PaymentStatus {
     APPROVED,
