@@ -59,7 +59,7 @@ Step 3. Clean and build the nested projects/springboot applications
  
 Step 4. Replace application.yaml file contents with application-local-dev.yaml [*where applicable*]
 
-Step 5. Go to each SpringBoot project and run com.patroclos.SpringbootApplication as java application.
+Step 5. Go to each SpringBoot project and run com.gabriele.SpringbootApplication as java application.
 
 **Wait until the log message appears on screen indicating the service is started, for example (ORCHESTRATOR SERVICE STARTED)*
 
