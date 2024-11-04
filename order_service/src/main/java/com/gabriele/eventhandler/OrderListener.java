@@ -1,11 +1,11 @@
-package com.patroclos.eventhandler;
+package com.gabriele.eventhandler;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.patroclos.service.OrderService;
+import com.gabriele.service.OrderService;
 
 import reactor.core.publisher.Flux;
 
@@ -18,7 +18,7 @@ public class OrderListener {
 	private static org.slf4j.Logger Logger = LoggerFactory.getLogger(OrderListener.class);
 
     @Autowired
-    private Flux<com.patroclos.common.dto.OrchestratorRequestDTO> flux;
+    private Flux<com.gabriele.common.dto.OrchestratorRequestDTO> flux;
 
    // @Autowired
    // private com.patroclos.service.OrderEventService orderEventService;
@@ -27,12 +27,12 @@ public class OrderListener {
     private OrderService orderService;
 
     @Bean
-    public Supplier<Flux<com.patroclos.common.dto.OrchestratorRequestDTO>> supplier(){
+    public Supplier<Flux<com.gabriele.common.dto.OrchestratorRequestDTO>> supplier(){
         return () -> flux;
     };
 
     @Bean
-    public Consumer<Flux<com.patroclos.common.dto.OrchestratorResponseDTO>> consumer(){
+    public Consumer<Flux<com.gabriele.common.dto.OrchestratorResponseDTO>> consumer(){
         return f -> f
                 .doOnNext(m -> Logger.info("Consuming orchestrator event: " + m))
                 .flatMap(responseDTO -> this.orderService.updateOrder(responseDTO))

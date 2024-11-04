@@ -1,4 +1,4 @@
-package com.patroclos.entitty;
+package com.gabriele.entitty;
 
 import lombok.Data;
 import lombok.ToString;
@@ -9,7 +9,7 @@ import java.util.UUID;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-import com.patroclos.common.enums.OrderStatus;
+import com.gabriele.common.enums.OrderStatus;
 
 @Data
 @ToString

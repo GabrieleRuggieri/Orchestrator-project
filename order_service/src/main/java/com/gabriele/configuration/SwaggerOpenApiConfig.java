@@ -1,4 +1,4 @@
-package com.patroclos.configuration;
+package com.gabriele.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
