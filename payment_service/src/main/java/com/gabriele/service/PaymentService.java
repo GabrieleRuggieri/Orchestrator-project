@@ -1,17 +1,14 @@
-package com.patroclos.service;
+package com.gabriele.service;
 
-import com.patroclos.common.dto.PaymentRequestDTO;
-import com.patroclos.common.dto.PaymentResponseDTO;
-import com.patroclos.common.enums.PaymentStatus;
-import com.patroclos.entity.CustomerAccount;
-import com.patroclos.repository.CustomerAccountRepository;
+import com.gabriele.common.dto.PaymentRequestDTO;
+import com.gabriele.common.dto.PaymentResponseDTO;
+import com.gabriele.common.enums.PaymentStatus;
+import com.gabriele.entity.CustomerAccount;
+import com.gabriele.repository.CustomerAccountRepository;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class PaymentService {

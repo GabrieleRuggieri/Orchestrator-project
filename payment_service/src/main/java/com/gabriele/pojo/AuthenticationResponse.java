@@ -1,4 +1,4 @@
-package com.patroclos.pojo;
+package com.gabriele.pojo;
 
 public class AuthenticationResponse {
 

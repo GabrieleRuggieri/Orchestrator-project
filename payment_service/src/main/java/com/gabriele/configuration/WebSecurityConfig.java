@@ -1,4 +1,4 @@
-package com.patroclos.configuration;
+package com.gabriele.configuration;
 
 import java.util.Arrays;
 

@@ -1,10 +1,10 @@
-package com.patroclos.repository;
+package com.gabriele.repository;
 
 import java.util.UUID;
 
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 
-import com.patroclos.entity.CustomerAccount;
+import com.gabriele.entity.CustomerAccount;
 
 import reactor.core.publisher.Mono;
 

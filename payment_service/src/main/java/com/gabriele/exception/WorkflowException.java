@@ -1,4 +1,4 @@
-package com.patroclos.exception;
+package com.gabriele.exception;
 
 public class WorkflowException extends RuntimeException {
 

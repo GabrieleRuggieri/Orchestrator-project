@@ -1,4 +1,4 @@
-package com.patroclos.entity;
+package com.gabriele.entity;
 
 import java.util.UUID;
 

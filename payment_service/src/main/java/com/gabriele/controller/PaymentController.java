@@ -1,8 +1,8 @@
-package com.patroclos.controller;
+package com.gabriele.controller;
 
-import com.patroclos.common.dto.PaymentRequestDTO;
-import com.patroclos.common.dto.PaymentResponseDTO;
-import com.patroclos.service.PaymentService;
+import com.gabriele.common.dto.PaymentRequestDTO;
+import com.gabriele.common.dto.PaymentResponseDTO;
+import com.gabriele.service.PaymentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
