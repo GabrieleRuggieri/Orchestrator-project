@@ -1,7 +1,10 @@
 package com.gabriele.pojo;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
+@Data
 public class Book implements Serializable {
 
 	/**
@@ -11,18 +14,5 @@ public class Book implements Serializable {
 	
 	private String bookName;
 	private String Author;
-	
-	public String getBookName() {
-		return bookName;
-	}
-	public void setBookName(String bookName) {
-		this.bookName = bookName;
-	}
-	public String getAuthor() {
-		return Author;
-	}
-	public void setAuthor(String author) {
-		Author = author;
-	}
 
 }
