@@ -2,11 +2,11 @@ package com.gabriele.orchestration;
 
 import java.util.List;
 
+import com.patroclos.common.dto.OrchestratorRequestDTO;
+import com.patroclos.common.dto.OrchestratorResponseDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.gabriele.common.dto.OrchestratorRequestDTO;
-import com.gabriele.common.dto.OrchestratorResponseDTO;
 import com.gabriele.configuration.GlobalModelMapper;
 import com.gabriele.configuration.WebClientConfig;
 import com.gabriele.enums.ProcessStatus;

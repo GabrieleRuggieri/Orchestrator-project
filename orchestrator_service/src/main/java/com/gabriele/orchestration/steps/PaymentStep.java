@@ -1,20 +1,19 @@
 package com.gabriele.orchestration.steps;
 
-import org.slf4j.LoggerFactory;
+import com.patroclos.common.dto.PaymentRequestDTO;
+import com.patroclos.common.dto.PaymentResponseDTO;
+import com.patroclos.common.enums.PaymentStatus;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.gabriele.SpringbootApplication;
-import com.gabriele.common.dto.PaymentRequestDTO;
-import com.gabriele.common.dto.PaymentResponseDTO;
-import com.gabriele.common.enums.PaymentStatus;
 import com.gabriele.enums.ProcessStepType;
 
 import reactor.core.publisher.Mono;
 
+@Slf4j
 public class PaymentStep extends ProcessStep {
 
-	private static org.slf4j.Logger Logger = LoggerFactory.getLogger(SpringbootApplication.class);
     private final PaymentRequestDTO requestDTO;
 
     public PaymentStep(WebClient webClient, PaymentRequestDTO requestDTO, ProcessStepType type) {
@@ -23,7 +22,7 @@ public class PaymentStep extends ProcessStep {
         this.type = type;
     	this.status = ProcessStepStatus.PENDING;
     }
-    
+
     @Override
     public ProcessStep copyStep() {
         return new PaymentStep(this.webClient, this.requestDTO, this.type);
@@ -31,7 +30,7 @@ public class PaymentStep extends ProcessStep {
 
     @Override
     public Mono<Boolean> process() {
-    	Logger.info("Calling API {/payment/debit}");
+    	log.info("Calling API {/payment/debit}");
         return webClient
                     .post()
                     .uri("/payment/debitAccount")
@@ -50,7 +49,7 @@ public class PaymentStep extends ProcessStep {
 
     @Override
     public Mono<Boolean> revert() {
-    	Logger.info("Calling API {/payment/credit}"); 
+    	log.info("Calling API {/payment/credit}");
         return webClient
                 .post()
                 .uri("/payment/creditAccount")
