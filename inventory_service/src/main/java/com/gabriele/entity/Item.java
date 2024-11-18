@@ -15,7 +15,7 @@ import java.util.UUID;
 @ToString
 
 @Entity
-@Table(name = "items")
+@Table(name = "ITEMS")
 public class Item {
 
     @Id
