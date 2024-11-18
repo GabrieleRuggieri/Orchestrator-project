@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.gabriele</groupId>
-	<artifactId>order-service</artifactId>
+	<artifactId>order_service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>order service</name>
 	<description>Order service for Spring Boot</description>
