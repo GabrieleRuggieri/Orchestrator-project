@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/public microservice orchestration.iml" filepath="$PROJECT_DIR$/public microservice orchestration.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Orchestrator-project.iml" filepath="$PROJECT_DIR$/Orchestrator-project.iml" />
     </modules>
   </component>
 </project>
