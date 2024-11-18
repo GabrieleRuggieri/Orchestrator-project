@@ -8,7 +8,7 @@ import lombok.ToString;
 @Data
 @ToString
 public class OrchestratorProcessDTO {
-	private String id;
+	private String uuid;
     private String status;
     private List<OrchestratorProcessStep> orchestratorProcessSteps;
     
