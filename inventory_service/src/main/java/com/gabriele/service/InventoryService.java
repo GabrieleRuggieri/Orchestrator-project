@@ -14,6 +14,8 @@ import com.gabriele.entity.Item;
 import com.gabriele.inventory.dto.ItemDTO;
 import com.gabriele.repository.ItemRepository;
 
+import java.util.UUID;
+
 @Slf4j
 @Service
 public class InventoryService {
@@ -22,6 +24,16 @@ public class InventoryService {
     private ItemRepository itemRepository;
 
     private final ModelMapper modelMapper = GlobalModelMapper.getModelMapper();
+
+    public Item createNewItem(String itemName, int initialStock) {
+        Item item = new Item();
+        item.setUuid(UUID.randomUUID().toString());
+        item.setStockAvailable(initialStock);
+        item.setState(true);
+        itemRepository.save(item).block();
+        return item;
+    }
+
 
     public InventoryResponseDTO deductInventory(InventoryRequestDTO requestDTO) {
         Item item = itemRepository.findByUuidAndStateTrue(requestDTO.getUuidItem()).block();
@@ -47,16 +59,32 @@ public class InventoryService {
         return responseDTO;
     }
 
+//    public void addInventory(InventoryRequestDTO requestDTO) {
+//        Item item = itemRepository.findByUuidAndStateTrue(requestDTO.getUuidItem()).block();
+//        if (item == null)
+//            throw new ItemNotFoundException();
+//
+//        item.setStockAvailable(item.getStockAvailable() + 1);
+//        itemRepository.save(item).block();
+//
+//        log.info("Stock was updated as +1 availability for item with uuid {}", item.getUuid());
+//    }
+
     public void addInventory(InventoryRequestDTO requestDTO) {
         Item item = itemRepository.findByUuidAndStateTrue(requestDTO.getUuidItem()).block();
-        if (item == null)
-            throw new ItemNotFoundException();
 
-        item.setStockAvailable(item.getStockAvailable() + 1);
-        itemRepository.save(item).block();
-
-        log.info("Stock was updated as +1 availability for item with uuid {}", item.getUuid());
+        if (item == null) {
+            item = new Item();
+            item.setUuid(UUID.randomUUID().toString());
+            item.setState(true);
+            itemRepository.save(item).block();
+            log.info("New item created with UUID {}", item.getUuid());
+        } else {
+            itemRepository.save(item).block();
+            log.info("Stock updated for existing item with UUID {}", item.getUuid());
+        }
     }
+
 
     public ItemDTO getItem(String uuidItem) {
         return getItemDTO(itemRepository.findByUuidAndStateTrue(uuidItem).block());
@@ -65,5 +93,6 @@ public class InventoryService {
     private ItemDTO getItemDTO(Item i) {
         return modelMapper.map(i, ItemDTO.class);
     }
+
 
 }
