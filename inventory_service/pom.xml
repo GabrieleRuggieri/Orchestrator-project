@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.gabriele</groupId>
-	<artifactId>inventory-service</artifactId>
+	<artifactId>inventory_service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>inventory service</name>
 	<description>Inventory service for Spring Boot</description>
