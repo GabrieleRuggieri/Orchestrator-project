@@ -23,7 +23,7 @@ public class Item {
     @Column(name = "id")
     private Long id;
     @Column(name = "uuid_item", unique = true)
-    private UUID uuid;
+    private String uuid;
     @Column(name = "price")
     private BigDecimal price;
     @Column(name = "stock_available")
