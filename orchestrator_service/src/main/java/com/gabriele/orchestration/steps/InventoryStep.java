@@ -1,13 +1,13 @@
 package com.gabriele.orchestration.steps;
 
+import com.patroclos.common.dto.InventoryRequestDTO;
+import com.patroclos.common.dto.InventoryResponseDTO;
+import com.patroclos.common.enums.InventoryStatus;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.gabriele.SpringbootApplication;
-import com.gabriele.common.dto.InventoryRequestDTO;
-import com.gabriele.common.dto.InventoryResponseDTO;
-import com.gabriele.common.enums.InventoryStatus;
 import com.gabriele.enums.ProcessStepType;
 
 import reactor.core.publisher.Mono;
