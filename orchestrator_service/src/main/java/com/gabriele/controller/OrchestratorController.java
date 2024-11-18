@@ -15,20 +15,18 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("orchestrator")
 public class OrchestratorController {
-	
-	@Autowired
-	private OrchestratorService orchestratorService;
-	
-	@GetMapping("/processes")
-	public Flux<OrchestratorProcessDTO> getAllOrchestratorProcesses() {
-		Flux<OrchestratorProcessDTO> processFlux =  orchestratorService.getOrchestratorProcesses();
-		return processFlux;
-	}
-	
-	@GetMapping("/process/{id}")
-	public Mono<OrchestratorProcessDTO> getOrchestratorProcess(@PathVariable String id) {
-		Mono<OrchestratorProcessDTO> processMono =  orchestratorService.getOrchestratorProcess(id);
-		return processMono;
-	}
+
+    @Autowired
+    private OrchestratorService orchestratorService;
+
+    @GetMapping("/processes")
+    public Flux<OrchestratorProcessDTO> getAllOrchestratorProcesses() {
+        return orchestratorService.getOrchestratorProcesses();
+    }
+
+    @GetMapping("/process/{uuid}")
+    public Mono<OrchestratorProcessDTO> getOrchestratorProcess(@PathVariable String uuid) {
+        return orchestratorService.getOrchestratorProcess(uuid);
+    }
 
 }
