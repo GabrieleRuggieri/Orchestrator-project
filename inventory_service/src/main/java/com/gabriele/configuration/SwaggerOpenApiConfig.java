@@ -31,5 +31,5 @@ public class SwaggerOpenApiConfig {
     }
 }
 
-//http://localhost:8086/swagger-ui.html
-//http://localhost:8086/v3/api-docs
+//http://localhost:8086/inventory-service/swagger-ui.html
+//http://localhost:8086/inventory-service/v3/api-docs
