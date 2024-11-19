@@ -1,7 +1,7 @@
 
 # Microservices Orchestrator including Saga Pattern Rollback
 
-An example of orchestrating several microservices using event-driven architecture.
+An example of orchestrating several microservices using event-driven architecture and reactive programming.
 
 WORK IN PROGRESS!
 
