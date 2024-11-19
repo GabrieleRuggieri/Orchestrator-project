@@ -7,7 +7,6 @@ import lombok.Data;
 @Data
 public class OrderRequestDTO {
 
-    private UUID orderId;
-	private Integer customerId;
-    private UUID itemId;
+	private String uuidCustomer;
+    private String uuidItem;
 }
