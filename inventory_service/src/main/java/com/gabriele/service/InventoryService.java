@@ -14,6 +14,7 @@ import com.gabriele.configuration.GlobalModelMapper;
 import com.gabriele.entity.Item;
 import com.gabriele.inventory.dto.ItemDTO;
 import com.gabriele.repository.ItemRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ public class InventoryService {
 
     private final ModelMapper modelMapper = GlobalModelMapper.getModelMapper();
 
+    @Transactional
     public List<ItemRequestDTO> createNewItems(List<ItemRequestDTO> itemRequestDTO) {
         List<Item> items = itemRequestDTO.stream()
                 .map(itemRequest -> {
@@ -47,6 +49,7 @@ public class InventoryService {
         return itemRequestDTO;
     }
 
+    @Transactional
     public InventoryResponseDTO deductInventory(InventoryRequestDTO requestDTO) {
         Item item = itemRepository.findByUuidAndStateTrue(requestDTO.getUuidItem());
 
@@ -71,6 +74,7 @@ public class InventoryService {
         return responseDTO;
     }
 
+    @Transactional
     public void addInventory(InventoryRequestDTO requestDTO) {
         Item item = itemRepository.findByUuidAndStateTrue(requestDTO.getUuidItem());
         if (item == null)
