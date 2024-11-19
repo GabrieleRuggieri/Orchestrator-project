@@ -15,18 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("stock")
+@RequestMapping("inventory")
 public class InventoryController {
 
     @Autowired
     private InventoryService inventoryService;
 
-    @PostMapping("/createItem")
+    @PostMapping("/items")
     public ItemRequestDTO createItem(ItemRequestDTO itemRequestDTO) {
         return this.inventoryService.createNewItem(itemRequestDTO);
     }
 
-    @GetMapping("/{uuidItem}")
+    @GetMapping("/items/{uuidItem}")
     public ItemDTO getItem(@PathVariable String uuidItem) {
         return this.inventoryService.getItem(uuidItem);
     }
