@@ -15,7 +15,10 @@ import com.gabriele.entity.Item;
 import com.gabriele.inventory.dto.ItemDTO;
 import com.gabriele.repository.ItemRepository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -26,22 +29,23 @@ public class InventoryService {
 
     private final ModelMapper modelMapper = GlobalModelMapper.getModelMapper();
 
-    public ItemRequestDTO createNewItem(ItemRequestDTO itemRequestDTO) {
-        log.info("Received DTO: {}", itemRequestDTO);
+    public List<ItemRequestDTO> createNewItems(List<ItemRequestDTO> itemRequestDTO) {
+        List<Item> items = itemRequestDTO.stream()
+                .map(itemRequest -> {
+                    Item item = new Item();
+                    item.setUuid(UUID.randomUUID().toString());
+                    item.setName(itemRequest.getName());
+                    item.setPrice(itemRequest.getPrice());
+                    item.setStockAvailable(itemRequest.getStockAvailable());
+                    item.setState(itemRequest.getState());
+                    return item;
+                })
+                .collect(Collectors.toList());
 
-        Item item = new Item();
-        item.setUuid(UUID.randomUUID().toString());
-        item.setName(itemRequestDTO.getName());
-        item.setPrice(itemRequestDTO.getPrice());
-        item.setStockAvailable(itemRequestDTO.getStockAvailable());
-        item.setState(itemRequestDTO.getState());
+        itemRepository.saveAll(items);
 
-        log.info("Item to save: {}", item);
-
-        itemRepository.save(item);
         return itemRequestDTO;
     }
-
 
     public InventoryResponseDTO deductInventory(InventoryRequestDTO requestDTO) {
         Item item = itemRepository.findByUuidAndStateTrue(requestDTO.getUuidItem());

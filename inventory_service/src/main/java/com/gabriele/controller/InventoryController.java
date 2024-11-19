@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("inventory")
 public class InventoryController {
@@ -22,8 +24,8 @@ public class InventoryController {
     private InventoryService inventoryService;
 
     @PostMapping("/items")
-    public ItemRequestDTO createItem(@RequestBody ItemRequestDTO itemRequestDTO) {
-        return this.inventoryService.createNewItem(itemRequestDTO);
+    public List<ItemRequestDTO> createItems(@RequestBody List<ItemRequestDTO> itemRequestDTO) {
+        return this.inventoryService.createNewItems(itemRequestDTO);
     }
 
     @GetMapping("/items/{uuidItem}")
