@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.gabriele.common.dto.OrderRequestDTO;
 import com.gabriele.common.dto.OrderResponseDTO;
-import com.gabriele.entitty.Order;
+import com.gabriele.entity.Order;
 import com.gabriele.service.OrderService;
 
 import reactor.core.publisher.Flux;
@@ -19,12 +19,12 @@ public class OrderController {
     private OrderService service;
 
     @PostMapping("/create")
-    public Mono<Order> createOrder(OrderRequestDTO request) throws Exception{
-    	return this.service.createOrder(request);
+    public Mono<Order> createOrder(OrderRequestDTO request) throws Exception {
+        return this.service.createOrder(request);
     }
 
     @GetMapping("/all")
-    public Flux<OrderResponseDTO> getAllOrders(){
+    public Flux<OrderResponseDTO> getAllOrders() {
         return this.service.getAllOrders();
     }
 
