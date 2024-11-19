@@ -13,16 +13,16 @@ import reactor.core.publisher.Mono;
 
 @Component
 public class InventoryService {
-	
-	@Autowired
-	private WebClient webClient;
 
-	public Mono<ItemDTO> getInventoryItem(UUID itemId) {
-		 return this.webClient
-                 .get()
-                 .uri(String.format("/stock/%s", itemId))
-                 .retrieve()
-                 .bodyToMono(ItemDTO.class)
-                 .timeout(Duration.ofMinutes(1l));
-	}
+    @Autowired
+    private WebClient webClient;
+
+    public Mono<ItemDTO> getInventoryItem(String uuidItem) {
+        return this.webClient
+                .get()
+                .uri(String.format("/inventory/items/%s", uuidItem))
+                .retrieve()
+                .bodyToMono(ItemDTO.class)
+                .timeout(Duration.ofMinutes(1L));
+    }
 }
