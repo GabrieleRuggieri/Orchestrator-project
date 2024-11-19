@@ -9,7 +9,7 @@ import org.springframework.context.event.EventListener;
 
 @Slf4j
 @SpringBootApplication
-@ComponentScan(basePackages = "com.patroclos.*")
+@ComponentScan(basePackages = "com.gabriele.*")
 public class SpringbootApplication {
 
     public static void main(String[] args) {
