@@ -2,6 +2,7 @@ package com.gabriele.controller;
 
 import com.gabriele.common.dto.InventoryRequestDTO;
 import com.gabriele.common.dto.InventoryResponseDTO;
+import com.gabriele.common.dto.ItemRequestDTO;
 import com.gabriele.inventory.dto.ItemDTO;
 import com.gabriele.service.InventoryService;
 
@@ -19,6 +20,11 @@ public class InventoryController {
 
     @Autowired
     private InventoryService inventoryService;
+
+    @PostMapping("/createItem")
+    public ItemRequestDTO createItem(ItemRequestDTO itemRequestDTO) {
+        return this.inventoryService.createNewItem(itemRequestDTO);
+    }
 
     @GetMapping("/{uuidItem}")
     public ItemDTO getItem(@PathVariable String uuidItem) {
