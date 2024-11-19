@@ -8,8 +8,9 @@ import lombok.Data;
 @Data
 public class ItemDTO {
 
-    private Long id;
-    private String itemId;
+    private String itemUuid;
+    private String name;
     private BigDecimal price;
     private Integer stockAvailable;
+    private Boolean state;
 }
