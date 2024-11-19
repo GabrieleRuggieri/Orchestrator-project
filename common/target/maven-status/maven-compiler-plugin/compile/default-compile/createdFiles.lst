@@ -10,6 +10,7 @@ com\gabriele\common\enums\OrderStatus.class
 com\gabriele\common\enums\PaymentStatus.class
 com\gabriele\common\dto\OrderRequestDTO.class
 com\gabriele\common\dto\PaymentRequestDTO.class
+com\gabriele\common\dto\ItemRequestDTO.class
 com\gabriele\common\dto\ErrorResponseDTO.class
 com\gabriele\common\dto\OrchestratorResponseDTO.class
 com\gabriele\common\enums\InventoryStatus.class
