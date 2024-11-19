@@ -1,42 +1,43 @@
 package com.gabriele.entity;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import com.gabriele.common.enums.OrderStatus;
-
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-
-@Entity
-@Table(name = "ORDERS")
+@Table("ORDERS") // Nome della tabella nel database
 public class Order {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Id // Indica il campo chiave primaria
     private Long id;
-    @Column(name = "uuid_order")
-    private String uuidOrder;
-    @Column(name = "uuid_customer")
-    private String uuidCustomer;
-    @Column(name = "uuid_item")
-    private String uuidItem;
-    @Column(name = "price")
-    private BigDecimal price;
-    @Column(name = "status")
-    private OrderStatus status;
-    @Column(name = "creation_date")
-    private LocalDateTime creationDate;
 
+    @Column("uuid_order") // Mappatura della colonna uuid_order
+    private String uuidOrder;
+
+    @Column("uuid_customer")
+    private String uuidCustomer;
+
+    @Column("uuid_item")
+    private String uuidItem;
+
+    @Column("price")
+    private BigDecimal price;
+
+    @Column("status")
+    private OrderStatus status;
+
+    @Column("creation_date")
+    private LocalDateTime creationDate;
 }
