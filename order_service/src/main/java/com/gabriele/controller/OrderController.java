@@ -16,16 +16,16 @@ import reactor.core.publisher.Mono;
 public class OrderController {
 
     @Autowired
-    private OrderService service;
+    private OrderService orderService;
 
     @PostMapping("/create")
     public Mono<Order> createOrder(OrderRequestDTO request) throws Exception {
-        return this.service.createOrder(request);
+        return this.orderService.createOrder(request);
     }
 
     @GetMapping("/all")
     public Flux<OrderResponseDTO> getAllOrders() {
-        return this.service.getAllOrders();
+        return this.orderService.getAllOrders();
     }
 
 }
