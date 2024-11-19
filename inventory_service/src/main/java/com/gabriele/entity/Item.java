@@ -22,8 +22,10 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Column(name = "uuid_item", unique = true)
+    @Column(name = "uuid", unique = true)
     private String uuid;
+    @Column(name = "name")
+    private String name;
     @Column(name = "price")
     private BigDecimal price;
     @Column(name = "stock_available")
