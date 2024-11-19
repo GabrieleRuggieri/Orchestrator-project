@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -22,8 +21,8 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Column(name = "uuid", unique = true)
-    private String uuid;
+    @Column(name = "uuid_item", unique = true)
+    private String uuidItem;
     @Column(name = "name")
     private String name;
     @Column(name = "price")

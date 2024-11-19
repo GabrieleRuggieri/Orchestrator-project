@@ -35,7 +35,7 @@ public class InventoryService {
         List<Item> items = itemRequestDTO.stream()
                 .map(itemRequest -> {
                     Item item = new Item();
-                    item.setUuid(UUID.randomUUID().toString());
+                    item.setUuidItem(UUID.randomUUID().toString());
                     item.setName(itemRequest.getName());
                     item.setPrice(itemRequest.getPrice());
                     item.setStockAvailable(itemRequest.getStockAvailable());
@@ -47,6 +47,28 @@ public class InventoryService {
         itemRepository.saveAll(items);
 
         return itemRequestDTO;
+    }
+
+    public ItemDTO getItem(String uuidItem) {
+        return getItemDTO(itemRepository.findByUuidAndStateTrue(uuidItem));
+    }
+
+    private ItemDTO getItemDTO(Item item) {
+        return modelMapper.map(item, ItemDTO.class);
+    }
+
+    @Transactional
+    public void addInventory(InventoryRequestDTO requestDTO) {
+
+        Item item = itemRepository.findByUuidAndStateTrue(requestDTO.getUuidItem());
+
+        if (item == null)
+            throw new ItemNotFoundException();
+
+        item.setStockAvailable(item.getStockAvailable() + 1);
+        itemRepository.save(item);
+
+        log.info("Stock was updated as +1 availability for item with uuid {}", item.getUuidItem());
     }
 
     @Transactional
@@ -73,26 +95,5 @@ public class InventoryService {
 
         return responseDTO;
     }
-
-    @Transactional
-    public void addInventory(InventoryRequestDTO requestDTO) {
-        Item item = itemRepository.findByUuidAndStateTrue(requestDTO.getUuidItem());
-        if (item == null)
-            throw new ItemNotFoundException();
-
-        item.setStockAvailable(item.getStockAvailable() + 1);
-        itemRepository.save(item);
-
-        log.info("Stock was updated as +1 availability for item with uuid {}", item.getUuid());
-    }
-
-    public ItemDTO getItem(String uuidItem) {
-        return getItemDTO(itemRepository.findByUuidAndStateTrue(uuidItem));
-    }
-
-    private ItemDTO getItemDTO(Item item) {
-        return modelMapper.map(item, ItemDTO.class);
-    }
-
 
 }

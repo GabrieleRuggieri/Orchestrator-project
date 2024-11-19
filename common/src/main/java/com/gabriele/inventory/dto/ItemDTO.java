@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class ItemDTO {
 
-    private String uuid;
+    private String uuidItem;
     private String name;
     private BigDecimal price;
     private Integer stockAvailable;
