@@ -1,31 +1,26 @@
 # Configurazione del datasource MySQL
 spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost/order_management_system
+  r2dbc:
+    url: r2dbc:mysql://localhost:3306/order_management
     username: root
     password: admin
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-      use-new-id-generator-mappings: true
+
   cloud:
     stream:
-          kafka:
-            binder:
-              brokers: kafka:9092
-          function:
-            definition: supplier;consumer
-          bindings:
-            supplier-out-0:
-              destination: create-order
-            consumer-in-0:
-              destination: update-order
+      kafka:
+        binder:
+          brokers: kafka:9092
+      function:
+        definition: supplier;consumer
+      bindings:
+        supplier-out-0:
+          destination: create-order
+        consumer-in-0:
+          destination: update-order
 
 # Configurazione del server
 server:
-  port: 8087
+  port: 8080
   error:
     include-message: always
     include-stacktrace: always
@@ -55,5 +50,3 @@ logging:
 service:
   endpoints:
     inventory: http://inventory:8086/inventory-service
-
-# Configurazione Spring Cloud Stream per Kafka
