@@ -1,21 +1,18 @@
 package com.gabriele;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.event.EventListener;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.r2dbc.connection.init.ConnectionFactoryInitializer;
-import org.springframework.r2dbc.connection.init.ResourceDatabasePopulator;
-import io.r2dbc.spi.ConnectionFactory;
+import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
 
 @Slf4j
 @SpringBootApplication
 @ComponentScan(basePackages = "com.gabriele.*")
+@EnableR2dbcRepositories(basePackages = "com.gabriele.repository")
+
 public class SpringbootApplication {
 
     public static void main(String[] args) {
