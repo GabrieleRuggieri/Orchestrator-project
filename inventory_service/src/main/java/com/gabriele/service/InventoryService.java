@@ -90,8 +90,8 @@ public class InventoryService {
         return getItemDTO(itemRepository.findByUuidAndStateTrue(uuidItem));
     }
 
-    private ItemDTO getItemDTO(Item i) {
-        return modelMapper.map(i, ItemDTO.class);
+    private ItemDTO getItemDTO(Item item) {
+        return modelMapper.map(item, ItemDTO.class);
     }
 
 
