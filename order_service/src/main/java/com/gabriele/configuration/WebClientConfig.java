@@ -16,29 +16,29 @@ import reactor.netty.resources.ConnectionProvider;
 public class WebClientConfig {
 
     @Bean
-    public WebClient inventoryClient(@Value("${service.endpoints.inventory}") String endpoint){
+    public WebClient inventoryClient(@Value("${service.endpoints.inventory}") String endpoint) {
         return WebClient.builder()
-        		.clientConnector(connector())
+                .clientConnector(connector())
                 .baseUrl(endpoint)
                 .build();
-    } 
- 
-    private static ClientHttpConnector connector() { 	 
-    	 ConnectionProvider provider = ConnectionProvider
-                 .builder("webclient-conn-pool")
-                 .maxConnections(50)
-                 .maxIdleTime(Duration.ofSeconds(60 * 4))
- 	             .maxLifeTime(Duration.ofSeconds(60))
- 	             .pendingAcquireTimeout(Duration.ofSeconds(30))
-                 .pendingAcquireTimeout(Duration.ofMillis(30 * 100))                
-                 .build();
-    	 
-    	 HttpClient client = HttpClient.create(provider)
-    			 //.wiretap(true); //log
-    			.responseTimeout(Duration.ofSeconds(20)); 
-    	 
+    }
+
+    private static ClientHttpConnector connector() {
+        ConnectionProvider provider = ConnectionProvider
+                .builder("webclient-conn-pool")
+                .maxConnections(50)
+                .maxIdleTime(Duration.ofSeconds(60 * 4))
+                .maxLifeTime(Duration.ofSeconds(60))
+                .pendingAcquireTimeout(Duration.ofSeconds(30))
+                .pendingAcquireTimeout(Duration.ofMillis(30 * 100))
+                .build();
+
+        HttpClient client = HttpClient.create(provider)
+                //.wiretap(true); //log
+                .responseTimeout(Duration.ofSeconds(20));
+
         ReactorClientHttpConnector conn = new ReactorClientHttpConnector(client);
-        
+
         return conn;
     }
 
