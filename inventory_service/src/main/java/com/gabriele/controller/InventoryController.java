@@ -22,7 +22,7 @@ public class InventoryController {
     private InventoryService inventoryService;
 
     @PostMapping("/items")
-    public ItemRequestDTO createItem(ItemRequestDTO itemRequestDTO) {
+    public ItemRequestDTO createItem(@RequestBody ItemRequestDTO itemRequestDTO) {
         return this.inventoryService.createNewItem(itemRequestDTO);
     }
 

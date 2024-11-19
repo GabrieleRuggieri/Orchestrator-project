@@ -27,11 +27,17 @@ public class InventoryService {
     private final ModelMapper modelMapper = GlobalModelMapper.getModelMapper();
 
     public ItemRequestDTO createNewItem(ItemRequestDTO itemRequestDTO) {
+        log.info("Received DTO: {}", itemRequestDTO);
+
         Item item = new Item();
         item.setUuid(UUID.randomUUID().toString());
-        item.setStockAvailable(itemRequestDTO.getStockAvailable());
+        item.setName(itemRequestDTO.getName());
         item.setPrice(itemRequestDTO.getPrice());
+        item.setStockAvailable(itemRequestDTO.getStockAvailable());
         item.setState(itemRequestDTO.getState());
+
+        log.info("Item to save: {}", item);
+
         itemRepository.save(item);
         return itemRequestDTO;
     }
