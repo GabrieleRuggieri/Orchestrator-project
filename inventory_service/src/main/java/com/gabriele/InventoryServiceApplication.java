@@ -10,11 +10,11 @@ import org.springframework.context.event.EventListener;
 @Slf4j
 @SpringBootApplication
 @ComponentScan(basePackages = "com.gabriele.*")
-public class SpringbootApplication {
+public class InventoryServiceApplication {
 
     public static void main(String[] args) {
         //System.setProperty("server.servlet.context-path", "/inventory-service");
-        SpringApplication.run(SpringbootApplication.class, args);
+        SpringApplication.run(InventoryServiceApplication.class, args);
     }
 
     @EventListener(ApplicationReadyEvent.class)
