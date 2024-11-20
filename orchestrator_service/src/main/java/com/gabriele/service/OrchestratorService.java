@@ -6,8 +6,7 @@ import java.util.UUID;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
-import com.patroclos.common.dto.OrchestratorRequestDTO;
-import com.patroclos.common.dto.OrchestratorResponseDTO;
+import com.gabriele.common.dto.OrchestratorResponseDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.r2dbc.core.DatabaseClient;
