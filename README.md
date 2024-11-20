@@ -5,7 +5,7 @@ An example of orchestrating several microservices using event-driven architectur
 
 WORK IN PROGRESS!
 
-
+<!--
 ## Requirements
 
 For building and running the application you need:
@@ -119,3 +119,4 @@ This will result in a failed payment debit attempt. In continuation the Order wi
 ![enter image description here](/images/ordercancelled.PNG)
 
 Fell free to grab a copy of this sample code, and play it yourself.
+-->
