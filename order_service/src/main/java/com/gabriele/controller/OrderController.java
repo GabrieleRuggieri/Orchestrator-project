@@ -1,5 +1,6 @@
 package com.gabriele.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,10 +19,12 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @PostMapping("/create")
-    public Mono<Order> createOrder(OrderRequestDTO request) throws Exception {
-        return this.orderService.createOrder(request);
+    @PostMapping("/")
+    public Mono<Order> createOrder(@RequestBody OrderRequestDTO orderRequestDTO) {
+        return orderService.createOrder(orderRequestDTO);
     }
+
+
 
     @GetMapping("/all")
     public Flux<OrderResponseDTO> getAllOrders() {
