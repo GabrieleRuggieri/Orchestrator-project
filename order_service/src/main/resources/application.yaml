@@ -1,7 +1,7 @@
 # Configurazione del datasource MySQL
 spring:
   r2dbc:
-    url: r2dbc:mysql://localhost:3306/order_management
+    url: r2dbc:mysql://localhost:3306/order_management_system
     username: root
     password: admin
 
@@ -25,7 +25,7 @@ server:
     include-message: always
     include-stacktrace: always
   servlet:
-    context-path: /order-service
+    context-path: /
 
 # Configurazione di SpringDoc/OpenAPI
 springdoc:
