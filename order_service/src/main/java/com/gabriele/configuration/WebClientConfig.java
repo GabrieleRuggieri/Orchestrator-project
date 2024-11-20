@@ -2,6 +2,7 @@ package com.gabriele.configuration;
 
 import java.time.Duration;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,16 +13,18 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
 import reactor.netty.resources.ConnectionProvider;
 
+@Slf4j
 @Configuration
 public class WebClientConfig {
 
     @Bean
     public WebClient inventoryClient(@Value("${service.endpoints.inventory}") String endpoint) {
+        log.info("Inventory Service Endpoint: {}", endpoint);
         return WebClient.builder()
-                .clientConnector(connector())
                 .baseUrl(endpoint)
                 .build();
     }
+
 
     private static ClientHttpConnector connector() {
         ConnectionProvider provider = ConnectionProvider
