@@ -38,49 +38,33 @@ public class OrderService {
     private ModelMapper modelMapper;
 
     public Mono<Order> createOrder(OrderRequestDTO orderRequestDTO) {
-        // Converte il DTO in entità (UUID generato automaticamente in convertToEntity)
-        return Mono.fromCallable(() -> this.convertToEntity(orderRequestDTO))
-                .flatMap(order -> this.orderRepository.save(order)) // Salva l'ordine
-                .doOnNext(savedOrder -> {
-                    // Emetti l'evento con il Sink
-                    if (this.sink != null) {
-                        OrchestratorRequestDTO orchestratorRequest = getOrchestratorRequestDTO(orderRequestDTO, savedOrder.getUuidOrder());
-                        this.sink.tryEmitNext(orchestratorRequest);
-                    }
-                    log.info("Order created with Pending Status: {}", savedOrder.getUuidOrder());
-                });
+        return convertToEntity(orderRequestDTO)
+                .flatMap(order -> orderRepository.save(order)
+                        .flatMap(savedOrder -> getOrchestratorRequestDTO(orderRequestDTO, savedOrder.getUuidOrder())
+                                .doOnNext(sink::tryEmitNext)
+                                .thenReturn(savedOrder)))
+                .doOnNext(savedOrder -> log.info("Order created with Pending Status: {}", savedOrder.getUuidOrder()));
     }
-
-
 
     public Flux<OrderResponseDTO> getAllOrders() {
         return this.orderRepository.findAll().map(this::convertToDTO);
     }
 
-    private Order convertToEntity(OrderRequestDTO dto) {
-        Order order = modelMapper.map(dto, Order.class);
+    private Mono<Order> convertToEntity(OrderRequestDTO dto) {
+        return Mono.fromCallable(() -> modelMapper.map(dto, Order.class))
+                .flatMap(order -> {
+                    order.setUuidOrder(UUID.randomUUID().toString());
 
-        // Genera l'UUID direttamente qui
-        order.setUuidOrder(UUID.randomUUID().toString());
-
-        inventoryService.getInventoryItem(order.getUuidItem())
-                .map(i -> {
-                    if (i == null) {
-                        throw new RuntimeException("Item not found");
-                    }
-                    return i;
-                })
-                .doOnSuccess(c -> {
-                    order.setPrice(c.getPrice());
-                    order.setStatus(OrderStatus.PENDING);
-                    order.setCreationDate(LocalDateTime.now());
-                })
-                .block(); // Sincronizza i dati con l'inventario
-
-        return order;
+                    return inventoryService.getInventoryItem(order.getUuidItem())
+                            .switchIfEmpty(Mono.error(new RuntimeException("Item not found")))
+                            .map(item -> {
+                                order.setPrice(item.getPrice());
+                                order.setStatus(OrderStatus.PENDING);
+                                order.setCreationDate(LocalDateTime.now());
+                                return order;
+                            });
+                });
     }
-
-
 
     private OrderResponseDTO convertToDTO(Order order) {
 
@@ -92,30 +76,18 @@ public class OrderService {
         return dto;
     }
 
-
-    public OrchestratorRequestDTO getOrchestratorRequestDTO(OrderRequestDTO orderRequestDTO, String uuidOrder) {
-
-        OrchestratorRequestDTO requestDTO = new OrchestratorRequestDTO();
-        requestDTO.setUuidCustomer(orderRequestDTO.getUuidCustomer());
-
-        inventoryService.getInventoryItem(orderRequestDTO.getUuidItem())
-                .map(i -> {
-                    if (i == null) {
-                        throw new RuntimeException("Item not found");
-                    }
-                    return i;
-                })
-                .doOnSuccess(c -> {
-                    requestDTO.setAmount(c.getPrice());
+    public Mono<OrchestratorRequestDTO> getOrchestratorRequestDTO(OrderRequestDTO orderRequestDTO, String uuidOrder) {
+        return inventoryService.getInventoryItem(orderRequestDTO.getUuidItem())
+                .switchIfEmpty(Mono.error(new RuntimeException("Item not found")))
+                .map(item -> {
+                    OrchestratorRequestDTO requestDTO = new OrchestratorRequestDTO();
+                    requestDTO.setAmount(item.getPrice());
                     requestDTO.setUuidOrder(uuidOrder);
                     requestDTO.setUuidItem(orderRequestDTO.getUuidItem());
                     requestDTO.setUuidCustomer(orderRequestDTO.getUuidCustomer());
-                })
-                .block();
-
-        return requestDTO;
+                    return requestDTO;
+                });
     }
-
 
     public Mono<Void> updateOrder(OrchestratorResponseDTO responseDTO, String uuidOrder) {
         return this.orderRepository.findByUuidOrder(uuidOrder)
@@ -124,14 +96,5 @@ public class OrderService {
                 .doOnSuccess(s -> log.info("Order updated with Status: {} ", responseDTO.getStatus()))
                 .then();
     }
-
-//    public Mono<Void> updateOrder(final OrchestratorResponseDTO responseDTO) {
-//        return this.orderRepository.findByCustomerAndItem(responseDTO.getUuidCustomer(), responseDTO.getUuidItem())
-//                .doOnNext(order -> order.setStatus(responseDTO.getStatus()))
-//                .flatMap(this.orderRepository::save)
-//                .doOnSuccess(order -> log.info("Order updated with Status: {}", responseDTO.getStatus()))
-//                .then();
-//    }
-
 
 }
