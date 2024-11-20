@@ -1,12 +1,11 @@
 package com.gabriele.entity;
 
+import com.gabriele.common.enums.OrderStatus;
 import lombok.Data;
 import lombok.ToString;
 import nonapi.io.github.classgraph.json.Id;
 
 import java.util.UUID;
-
-import com.gabriele.common.enums.OrderStatus;
 
 @Data
 @ToString
