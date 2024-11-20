@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.gabriele</groupId>
-	<artifactId>payment_service</artifactId>
+	<artifactId>payment-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>payment service</name>
 	<description>Payment service for Spring Boot</description>
@@ -101,7 +101,7 @@
             <artifactId>r2dbc-h2</artifactId>
         </dependency>
         <dependency>
-			<groupId>com.patroclos</groupId>
+			<groupId>com.gabriele</groupId>
 			<artifactId>common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
