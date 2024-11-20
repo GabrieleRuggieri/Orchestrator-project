@@ -49,4 +49,4 @@ logging:
 # Configurazione dei servizi esterni
 service:
   endpoints:
-    inventory: http://inventory:8086/inventory-service
+    inventory: http://inventory-service:8086
