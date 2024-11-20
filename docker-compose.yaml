@@ -40,21 +40,24 @@ services:
       - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
       - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
 
-#  orchestrator:
-#    build: ./orchestrator_service/
-#    image: orchestrator
-#    ports:
-#      - 8083:8083
-#    hostname: orchestrator
-#    container_name: orchestrator
-#    networks:
-#      - network-kafka
-#    environment:
-#      - SERVER_SERVLET_CONTEXT_PATH=/orchestrator-service
-#      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+  # orchestrator:
+  #   build: ./orchestrator_service/
+  #   image: orchestrator
+  #   ports:
+  #     - 8083:8083
+  #   hostname: orchestrator
+  #   container_name: orchestrator
+  #   networks:
+  #     - network-kafka
+  #   environment:
+  #     - SERVER_SERVLET_CONTEXT_PATH=/orchestrator-service
+  #     - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
 
   order-service:
-    build: ./order_service/
+#    build: ./order_service/
+    build:
+      context: ./order_service/
+      dockerfile: Dockerfile
     image: order-service
     ports:
       - 8080:8080
@@ -65,21 +68,27 @@ services:
     environment:
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
       - SERVICE_ENDPOINTS_INVENTORY=http://inventory-service:8086/inventory-service
+      - SPRING_R2DBC_URL=r2dbc:mysql://host.docker.internal:3306/order_management_system # Per R2DBC e localhost
+      - SPRING_R2DBC_USERNAME=root
+      - SPRING_R2DBC_PASSWORD=admin
 
-#  payment-service:
-#    build: ./payment_service/
-#    image: payment-service
-#    ports:
-#      - 8082:8082
-#    hostname: payment
-#    container_name: payment-service
-#    networks:
-#      - network-kafka
-#    environment:
-#      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+  # payment-service:
+  #   build: ./payment_service/
+  #   image: payment-service
+  #   ports:
+  #     - 8082:8082
+  #   hostname: payment
+  #   container_name: payment-service
+  #   networks:
+  #     - network-kafka
+  #   environment:
+  #     - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
 
   inventory-service:
-    build: ./inventory_service/
+#    build: ./inventory_service/
+    build:
+      context: ./inventory_service/
+      dockerfile: Dockerfile
     image: inventory-service
     ports:
       - 8086:8086
@@ -89,3 +98,17 @@ services:
       - network-kafka
     environment:
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/order_management_system # Per JDBC e localhost
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=admin
+
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    ports:
+      - "3307:3306"  # Cambiata la porta esterna per evitare conflitti con MySQL locale
+    networks:
+      - network-kafka
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: order_management_system
