@@ -13,11 +13,11 @@ import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
 @ComponentScan(basePackages = "com.gabriele.*")
 @EnableR2dbcRepositories(basePackages = "com.gabriele.repository")
 
-public class SpringbootApplication {
+public class OrderServiceApplication {
 
     public static void main(String[] args) {
         //System.setProperty("server.servlet.context-path", "/order-service");
-        SpringApplication.run(SpringbootApplication.class, args);
+        SpringApplication.run(OrderServiceApplication.class, args);
     }
 
     @EventListener(ApplicationReadyEvent.class)
