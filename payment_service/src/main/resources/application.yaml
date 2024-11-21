@@ -16,8 +16,7 @@ logging:
    level:
      root: ERROR
      org:
-       springframework:
-         web: ERROR
+       springframework: ERROR
      com.gabriele: INFO
 ---     
 r2dbc:
