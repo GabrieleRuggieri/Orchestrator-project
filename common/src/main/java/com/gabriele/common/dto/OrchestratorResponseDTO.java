@@ -10,7 +10,7 @@ import com.gabriele.common.enums.OrderStatus;
 @Data
 public class OrchestratorResponseDTO {
 
-    private String uuidCustomer;
+    private String uuidCustomerAccount;
     private String uuidOrder;
     private String uuidItem;
     private BigDecimal amount;

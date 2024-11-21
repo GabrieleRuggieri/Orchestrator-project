@@ -8,7 +8,7 @@ import java.util.UUID;
 @Data
 public class OrchestratorRequestDTO {
 
-    private String uuidCustomer;
+    private String uuidCustomerAccount;
     private String uuidItem;
     private String uuidOrder;
     private BigDecimal amount;

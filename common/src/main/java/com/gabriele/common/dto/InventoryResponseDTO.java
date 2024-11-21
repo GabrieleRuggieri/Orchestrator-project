@@ -8,7 +8,7 @@ import com.gabriele.common.enums.InventoryStatus;
 public class InventoryResponseDTO {
 
     private String uuidOrder;
-    private String uuidCustomer;
+    private String uuidCustomerAccount;
     private String uuidItem;
     private InventoryStatus status;
 

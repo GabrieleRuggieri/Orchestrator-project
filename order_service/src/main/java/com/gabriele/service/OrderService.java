@@ -84,7 +84,7 @@ public class OrderService {
                     requestDTO.setAmount(item.getPrice());
                     requestDTO.setUuidOrder(uuidOrder);
                     requestDTO.setUuidItem(orderRequestDTO.getUuidItem());
-                    requestDTO.setUuidCustomer(orderRequestDTO.getUuidCustomer());
+                    requestDTO.setUuidCustomerAccount(orderRequestDTO.getUuidCustomerAccount());
                     return requestDTO;
                 });
     }

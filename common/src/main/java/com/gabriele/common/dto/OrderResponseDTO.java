@@ -12,7 +12,7 @@ import com.gabriele.common.enums.OrderStatus;
 public class OrderResponseDTO {
 
     private String uuidOrder;
-    private String uuidCustomer;
+    private String uuidCustomerAccount;
     private String uuidItem;
     private BigDecimal amount;
     private OrderStatus status;

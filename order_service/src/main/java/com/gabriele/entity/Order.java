@@ -28,7 +28,7 @@ public class Order {
     private String uuidOrder;
 
     @Column("uuid_customer")
-    private String uuidCustomer;
+    private String uuidCustomerAccount;
 
     @Column("uuid_item")
     private String uuidItem;
