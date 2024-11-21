@@ -20,10 +20,10 @@ server:
 springdoc:
   api-docs:
     enabled: true
-    path: /v3/api-docs
+    path: /payment-service/v3/api-docs
   swagger-ui:
     enabled: true
-    path: /swagger-ui.html
+    path: /payment-service/swagger-ui.html
     layout: BaseLayout
     operationsSorter: method
 

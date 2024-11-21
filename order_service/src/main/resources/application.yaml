@@ -29,13 +29,14 @@ server:
 
 # Configurazione di SpringDoc/OpenAPI
 springdoc:
+  api-docs:
+    enabled: true
+    path: /order-service/v3/api-docs
   swagger-ui:
     enabled: true
+    path: /order-service/swagger-ui.html
     layout: BaseLayout
     operationsSorter: method
-    path: /swagger-ui.html
-  api-docs:
-    path: /api-docs
 
 # Logging
 logging:
