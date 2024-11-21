@@ -17,13 +17,14 @@ import com.gabriele.common.enums.OrderStatus;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Table("ORDERS") // Nome della tabella nel database
+@Table("ORDERS")
 public class Order {
 
-    @Id // Indica il campo chiave primaria
+    @Id
+    @Column("id")
     private Long id;
 
-    @Column("uuid_order") // Mappatura della colonna uuid_order
+    @Column("uuid_order")
     private String uuidOrder;
 
     @Column("uuid_customer")
