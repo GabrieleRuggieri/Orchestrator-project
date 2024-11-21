@@ -1,8 +1,6 @@
 package com.gabriele.entity;
 
 import java.math.BigDecimal;
-import java.util.UUID;
-
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

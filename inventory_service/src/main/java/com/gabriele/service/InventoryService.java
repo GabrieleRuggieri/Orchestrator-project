@@ -80,7 +80,7 @@ public class InventoryService {
 
         InventoryResponseDTO responseDTO = new InventoryResponseDTO();
         responseDTO.setUuidOrder(requestDTO.getUuidOrder());
-        responseDTO.setUuidCustomer(requestDTO.getUuidCustomer());
+        responseDTO.setUuidCustomer(requestDTO.getUuidCustomerAccount());
         responseDTO.setUuidItem(requestDTO.getUuidItem());
 
         if (item.getStockAvailable() > 0) {

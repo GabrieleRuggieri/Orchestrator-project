@@ -82,6 +82,9 @@ services:
       - network-kafka
     environment:
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/order_management_system # Per JDBC e localhost
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=admin
 
   inventory-service:
 #    build: ./inventory_service/
