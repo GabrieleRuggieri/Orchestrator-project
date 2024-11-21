@@ -15,12 +15,12 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(AbstractHttpConfigurer::disable) // Disabilita CSRF
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll()) // Consenti l'accesso a tutte le richieste
-                .logout(AbstractHttpConfigurer::disable) // Disabilita il logout
-                .formLogin(AbstractHttpConfigurer::disable) // Disabilita il form login
-                .httpBasic(AbstractHttpConfigurer::disable); // Disabilita HTTP Basic Authentication
+                        .anyRequest().permitAll())
+                .logout(AbstractHttpConfigurer::disable)
+                .formLogin(AbstractHttpConfigurer::disable)
+                .httpBasic(AbstractHttpConfigurer::disable);
 
         return http.build();
     }
