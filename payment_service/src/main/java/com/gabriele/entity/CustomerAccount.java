@@ -1,20 +1,33 @@
 package com.gabriele.entity;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
-import org.springframework.data.relational.core.mapping.Table;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
-import nonapi.io.github.classgraph.json.Id;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
-@Table("customerAccounts")
+
+@Entity
+@Table(name = "CUSTOMER_ACCOUNT")
 public class CustomerAccount {
 
     @Id
-    private UUID id;
-    private Integer customerId;
-    private Double balance;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+    @Column(name = "uuid_customer_account")
+    private String uuidCustomerAccount;
+    @Column(name = "balance")
+    private BigDecimal balance;
+    @Column(name = "state")
+    private Boolean state;
+
 }
