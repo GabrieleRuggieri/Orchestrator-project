@@ -71,17 +71,17 @@ services:
       - SPRING_R2DBC_USERNAME=root
       - SPRING_R2DBC_PASSWORD=admin
 
-  # payment-service:
-  #   build: ./payment_service/
-  #   image: payment-service
-  #   ports:
-  #     - 8082:8082
-  #   hostname: payment
-  #   container_name: payment-service
-  #   networks:
-  #     - network-kafka
-  #   environment:
-  #     - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+  payment-service:
+    build: ./payment_service/
+    image: payment-service
+    ports:
+      - 8082:8082
+    hostname: payment
+    container_name: payment-service
+    networks:
+      - network-kafka
+    environment:
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
 
   inventory-service:
 #    build: ./inventory_service/
