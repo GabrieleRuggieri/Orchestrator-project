@@ -1,5 +1,7 @@
 package com.gabriele.controller;
 
+import com.gabriele.common.dto.CustomerAccountDTO;
+import com.gabriele.common.dto.CustomerAccountRequestDTO;
 import com.gabriele.common.dto.PaymentRequestDTO;
 import com.gabriele.common.dto.PaymentResponseDTO;
 import com.gabriele.service.PaymentService;
@@ -16,14 +18,19 @@ public class PaymentController {
 
     @Autowired
     private PaymentService service;
-    
+
+    @PostMapping("/account")
+    public CustomerAccountDTO createNewCustomerAccount(@RequestBody CustomerAccountRequestDTO requestDTO) {
+        return this.service.creationCustomerAccount(requestDTO);
+    }
+
     @PostMapping("/debitAccount")
-    public PaymentResponseDTO debitAccount(@RequestBody final PaymentRequestDTO requestDTO){
-       return this.service.debitAccount(requestDTO);
+    public PaymentResponseDTO debitAccount(@RequestBody PaymentRequestDTO requestDTO) {
+        return this.service.debitAccount(requestDTO);
     }
 
     @PostMapping("/creditAccount")
-    public void creditAccount(@RequestBody final PaymentRequestDTO requestDTO){
+    public void creditAccount(@RequestBody PaymentRequestDTO requestDTO) {
         this.service.creditAccount(requestDTO);
     }
 
