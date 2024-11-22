@@ -1,8 +1,8 @@
 package com.gabriele.orchestration.steps;
 
-import com.patroclos.common.dto.PaymentRequestDTO;
-import com.patroclos.common.dto.PaymentResponseDTO;
-import com.patroclos.common.enums.PaymentStatus;
+import com.gabriele.common.dto.PaymentRequestDTO;
+import com.gabriele.common.dto.PaymentResponseDTO;
+import com.gabriele.common.enums.PaymentStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
