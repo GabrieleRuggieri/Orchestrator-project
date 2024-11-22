@@ -1,45 +1,40 @@
 package com.gabriele.entity;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 
-@Entity
-@Table(name = "ORCHESTRATOR_PROCESS_STEP")
+@Table("ORCHESTRATOR_PROCESS_STEP")
 public class OrchestratorProcessStep {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column("id")
     private Long id;
 
-    @Column(name = "uuid")
-    private String uuid;
+    @Column("uuid_orchestrator_process_step")
+    private String uuidOrchestratorProcessStep;
 
-    @Column(name = "orchestratorProcess_id")
+    @Column("id_orchestrator_process")
     private Long orchestratorProcessId;
 
-    @Column(name = "stepType")
+    @Column("step_type")
     private String stepType;
 
-    @Column(name = "name")
+    @Column("name")
     private String name;
 
-    @Column(name = "error")
+    @Column("error")
     private String error;
 
-    @Column(name = "statusStep")
+    @Column("status_step")
     private Long statusStep;
-
-    @ManyToOne
-    @JoinColumn(name = "id_orchestrator_process", nullable = false)
-    private OrchestratorProcess orchestratorProcess;
 }
