@@ -2,10 +2,10 @@ package com.gabriele.service;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.UUID;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
+import com.gabriele.common.dto.OrchestratorRequestDTO;
 import com.gabriele.common.dto.OrchestratorResponseDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class OrchestratorService {
             (row, rowMetaData) ->
             {
                 OrchestratorProcessDTO op = new OrchestratorProcessDTO();
-                op.setUuid(row.get("uuid", String.class));
+                op.setUuidOrchestratorProcess(row.get("uuid", String.class));
                 op.setStatus(row.get("status", String.class));
                 return op;
             };
@@ -44,7 +44,7 @@ public class OrchestratorService {
             (row, rowMetaData) ->
             {
                 OrchestratorProcessStep step = new OrchestratorProcessStep();
-                step.setUuid(row.get("id", String.class));
+                step.setUuidOrchestratorProcessStep(row.get("id", String.class));
                 step.setOrchestratorProcessId(row.get("orchestratorProcess_id", Long.class));
                 step.setName(row.get("name", String.class));
                 step.setStatusStep(row.get("statusStep", Long.class));
@@ -116,8 +116,8 @@ public class OrchestratorService {
                         .map(grouplist ->
                         {
                             OrchestratorProcessDTO op = new OrchestratorProcessDTO();
-                            op.setUuid(grouplist.get(0).getId().toString());
-                            op.setOrchestratorProcessSteps(grouplist);
+                            op.setUuidOrchestratorProcess(grouplist.get(0).getId().toString());
+                            op.setOrchestratorProcessStep(grouplist);
                             return op;
                         })
                 );
