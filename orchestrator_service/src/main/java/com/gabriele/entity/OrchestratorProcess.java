@@ -1,12 +1,13 @@
 package com.gabriele.entity;
 
-import jakarta.persistence.*;
+import com.gabriele.enums.ProcessStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
-import com.gabriele.enums.ProcessStatus;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.List;
 
@@ -15,22 +16,17 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 
-@Entity
-@Table(name = "orchestratorProcess")
+@Table("ORCHESTRATOR_PROCESS")
 public class OrchestratorProcess {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column("id")
     private Long id;
 
-    @Column(name = "uuid")
-    private String uuid;
+    @Column("uuid_orchestrator_process")
+    private String uuidOrchestratorProcess;
 
-    @Column(name = "status")
+    @Column("status")
     private ProcessStatus status;
-
-    @OneToMany(mappedBy = "orchestratorProcess", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OrchestratorProcessStep> orchestratorProcessSteps;
 
 }
