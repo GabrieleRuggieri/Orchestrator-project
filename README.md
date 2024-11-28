@@ -36,16 +36,16 @@ To run the microservices there are 2 options.
 
 Step 1. Build target .jar files
 
-    /common/mvnw clean install
-    /inventory_service/mvnw clean package
-    /orchestrator_service/mvnw clean package
-    /order_service/mvnw clean package
-    /payment_service/mvnw clean package
+    /common-orchestration/mvnw clean install
+    /inventory-service/mvnw clean installl
+    /orchestrator-service/mvnw clean install
+    /order-service/mvnw clean install
+    /payment-service/mvnw clean install
 
 Step 2. Run Docker Compose file
 *from the root directory run command* 
 
-    docker compose up
+    docker-compose -f docker-compose.yaml up -d --build
 
 
 ## Running the Microservices from IDE 
@@ -54,7 +54,7 @@ Step 1. Import project in the IDE
 
 Step 2. From root directory run command
 
-     docker compose -f docker-compose-dev up
+     docker-compose -f docker-compose.yaml up -d --build
  
 Step 3. Clean and build the nested projects/springboot applications 
  
