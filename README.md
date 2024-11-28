@@ -5,14 +5,14 @@ An example of orchestrating several microservices using event-driven architectur
 
 WORK IN PROGRESS!
 
-<!--
+
 ## Requirements
 
 For building and running the application you need:
 
 -   [JDK 17 or newer](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
--  [Eclipse IDE or other Java compatible IDE](https://www.eclipse.org/ide/)
-- [Docker 4.17.0 or newer ](https://www.docker.com/products/docker-desktop/)
+-  [IntelliJ IDE or other Java compatible IDE](https://www.jetbrains.com/idea/)
+- [Docker 4.36.0 or newer ](https://www.docker.com/products/docker-desktop/)
 
 ## Some useful information
 
@@ -21,9 +21,9 @@ For building and running the application you need:
 
 ## Case Study
 
-An Order Management system uses Microservices in the backed to execute and process Order requests. When an Order request is created it stays in Pending status until the payment is executed successfully and product item is deduced from inventory stock with no failures.
+An Order Management system uses Microservices to execute and process Order requests. When an Order request is created it stays in Pending status until the payment is executed successfully and product item is deduced from inventory stock with no failures.
 
-![enter image description here](/images/uml.png)
+![Real case scenario](/images/Real Case Scenario.png)
 
 ## Running the Microservices
 
@@ -119,4 +119,3 @@ This will result in a failed payment debit attempt. In continuation the Order wi
 ![enter image description here](/images/ordercancelled.PNG)
 
 Fell free to grab a copy of this sample code, and play it yourself.
--->
