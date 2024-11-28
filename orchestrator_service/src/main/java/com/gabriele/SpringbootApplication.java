@@ -1,5 +1,6 @@
 package com.gabriele;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,29 +14,19 @@ import org.springframework.r2dbc.connection.init.ResourceDatabasePopulator;
 
 import io.r2dbc.spi.ConnectionFactory;
 
+@Slf4j
 @SpringBootApplication
-@ComponentScan(basePackages = "com.patroclos.*")
+@ComponentScan(basePackages = "com.gabriele.*")
 public class SpringbootApplication {
-	
-	private static org.slf4j.Logger Logger = LoggerFactory.getLogger(SpringbootApplication.class);
 
-	
-	public static void main(String[] args) {
-		//System.setProperty("server.servlet.context-path", "/orchestrator-service");
-		SpringApplication.run(SpringbootApplication.class, args);
-	}
-	
-	@EventListener(ApplicationReadyEvent.class)
-	public void doSomethingAfterStartup() {
-	    Logger.info("ORCHESTRATOR SERVICE STARTED");
-	}
-	
-	@Bean
-	public ConnectionFactoryInitializer initializer(ConnectionFactory connectionFactory) {
-		ConnectionFactoryInitializer initializer = new ConnectionFactoryInitializer();
-		initializer.setConnectionFactory(connectionFactory);
-		initializer.setDatabasePopulator(new ResourceDatabasePopulator(new ClassPathResource("schema.sql")));
-		return initializer;
-	}
+    public static void main(String[] args) {
+        //System.setProperty("server.servlet.context-path", "/orchestrator-service");
+        SpringApplication.run(SpringbootApplication.class, args);
+    }
+
+    @EventListener(ApplicationReadyEvent.class)
+    public void doSomethingAfterStartup() {
+        log.info("ORCHESTRATOR SERVICE STARTED");
+    }
 
 }
