@@ -91,7 +91,7 @@ From the ***Orchestrator service console output*** a success 'Order Complete' me
 Process can be retrieved from Orchestrator Service REST API
  http://localhost:8083/orchestrator-service/swagger-ui/index.html
 
-![enter image description here](/images/Orchestrator_Swagger_Example.PNG)
+![Swager Orchestrator Service](/images/Orchestrator_Swagger_Example.png)
 
 ## Creating a Failed Event with Rollback
 
