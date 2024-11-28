@@ -52,7 +52,6 @@ services:
     networks:
       - network-kafka
     environment:
-      - SERVER_SERVLET_CONTEXT_PATH=/orchestrator-service
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
 
   order-service:
