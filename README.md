@@ -1,17 +1,16 @@
 
-# Microservices Orchestrator including Saga Pattern Rollback
+# Microservices with Orchestrator including Saga Pattern Rollback
 
 An example of orchestrating several microservices using event-driven architecture and reactive programming.
 
-WORK IN PROGRESS!
-
+In continuous development...
 
 ## Requirements
 
 For building and running the application you need:
 
--   [JDK 17 or newer](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
--  [IntelliJ IDE or other Java compatible IDE](https://www.jetbrains.com/idea/)
+- [JDK 17 or newer](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+- [IntelliJ IDE or other Java compatible IDE](https://www.jetbrains.com/idea/)
 - [Docker 4.36.0 or newer ](https://www.docker.com/products/docker-desktop/)
 
 ## Some useful information
@@ -23,7 +22,7 @@ For building and running the application you need:
 
 An Order Management system uses Microservices to execute and process Order requests. When an Order request is created it stays in Pending status until the payment is executed successfully and product item is deduced from inventory stock with no failures.
 
-![Real case scenario](/images/Real Case Scenario.png)
+![Real case scenario](/images/Real-Case-Scenario.png)
 
 ## Running the Microservices
 
