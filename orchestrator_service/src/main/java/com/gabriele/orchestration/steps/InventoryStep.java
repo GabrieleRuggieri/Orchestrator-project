@@ -3,18 +3,17 @@ package com.gabriele.orchestration.steps;
 import com.gabriele.common.dto.InventoryRequestDTO;
 import com.gabriele.common.dto.InventoryResponseDTO;
 import com.gabriele.common.enums.InventoryStatus;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.gabriele.SpringbootApplication;
 import com.gabriele.enums.ProcessStepType;
 
 import reactor.core.publisher.Mono;
 
+@Slf4j
 public class InventoryStep extends ProcessStep {
-	
-	private static org.slf4j.Logger Logger = LoggerFactory.getLogger(SpringbootApplication.class);
+
     private final InventoryRequestDTO requestDTO;
 
     public InventoryStep(WebClient webClient, InventoryRequestDTO requestDTO, ProcessStepType type) {
@@ -30,7 +29,7 @@ public class InventoryStep extends ProcessStep {
 
     @Override
     public Mono<Boolean> process() {
-    	Logger.info("Calling API {/stock/deduct}");
+    	log.info("Calling API {/stock/deduct}");
     	return webClient
                 .post()
                 .uri("/stock/deduct")
@@ -49,7 +48,7 @@ public class InventoryStep extends ProcessStep {
 
     @Override
     public Mono<Boolean> revert() {
-    	Logger.info("Calling API {/stock/add}");
+    	log.info("Calling API {/stock/add}");
         return webClient
                     .post()
                     .uri("/stock/add")

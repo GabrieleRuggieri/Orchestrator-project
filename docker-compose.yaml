@@ -62,7 +62,7 @@ services:
       dockerfile: Dockerfile
     image: order-service
     ports:
-      - 8080:8080
+      - "8080:8080"
     hostname: order
     container_name: order-service
     networks:
@@ -96,7 +96,7 @@ services:
       dockerfile: Dockerfile
     image: inventory-service
     ports:
-      - 8086:8086
+      - "8086:8086"
     hostname: inventory
     container_name: inventory-service
     networks:
