@@ -60,38 +60,38 @@ Step 3. Clean and build the nested projects/springboot applications
  
 Step 4. Replace application.yaml file contents with application-local-dev.yaml [*where applicable*]
 
-Step 5. Go to each SpringBoot project and run com.gabriele.SpringbootApplication as java application.
+Step 5. Go to each SpringBoot project and run main Application.
 
 **Wait until the log message appears on screen indicating the service is started, for example (ORCHESTRATOR SERVICE STARTED)*
 
 ## Microservices REST API URLs
 
- - http://localhost:8083/orchestrator-service/swagger-ui/index.html#/
- - http://localhost:8080/order-service/swagger-ui/index.html#/   
- - http://localhost:8082/payment-service/swagger-ui/index.html#/
- - http://localhost:8086/inventory-service/swagger-ui/index.html#/
+ - http://localhost:8083/orchestrator-service/swagger-ui/index.html
+ - http://localhost:8080/order-service/swagger-ui/index.html
+ - http://localhost:8082/payment-service/swagger-ui/index.html
+ - http://localhost:8086/inventory-service/swagger-ui/index.html
 
 ## Creating a successful Event
 
 When all services are up and running, go to below URL
 
-http://localhost:8080/order-service/swagger-ui/index.html#/
+http://localhost:8080/order-service/swagger-ui/index.html
 
 Try creating an Order with below sample JSON request
 
 /order/create
 
     {
-      "customerId": 1,
-      "itemId": "a9112c62-0206-4711-beaf-220c2d1bbfb0"
+      "uuidCustomerAccount" = "String"
+      "uuidItem" = "String"
     }
 
 From the ***Orchestrator service console output*** a success 'Order Complete' message should appear. In   ***Order service console output***, Order should be updated as well with status **CREATED**.
 
 Process can be retrieved from Orchestrator Service REST API
- http://localhost:8083/orchestrator-service/swagger-ui/index.html#/
+ http://localhost:8083/orchestrator-service/swagger-ui/index.html
 
-![enter image description here](/images/orchestrator-swagger-complete.PNG)
+![enter image description here](/images/Orchestrator_Swagger_Example.PNG)
 
 ## Creating a Failed Event with Rollback
 
