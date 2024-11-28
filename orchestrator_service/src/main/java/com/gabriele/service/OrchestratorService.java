@@ -45,7 +45,7 @@ public class OrchestratorService {
             {
                 OrchestratorProcessStep step = new OrchestratorProcessStep();
                 step.setUuidOrchestratorProcessStep(row.get("id", String.class));
-                step.setOrchestratorProcessId(row.get("orchestratorProcess_id", Long.class));
+                step.setOrchestratorProcessId(row.get("orchestratorProcessId", Long.class));
                 step.setName(row.get("name", String.class));
                 step.setStatusStep(row.get("statusStep", Long.class));
                 step.setStepType(row.get("stepType", String.class));
@@ -55,8 +55,8 @@ public class OrchestratorService {
 
     private static final String SQL =
             "SELECT * " +
-                    " FROM orchestratorProcess " +
-                    " INNER JOIN orchestratorProcessStep ops on ops.orchestratorProcess_id = orchestratorProcess.id";
+                    " FROM OrchestratorProcess " +
+                    " INNER JOIN OrchestratorProcessStep ops on ops.orchestratorProcessId = OrchestratorProcess.id";
 
     @Autowired
     private OrchestratorProcessRepository orchestratorProcessRepository;
@@ -74,7 +74,7 @@ public class OrchestratorService {
         orchestratorProcessRepository.save(persistProcess)
                 .subscribe(s ->
                 {
-                    log.info("Process recorded with id: " + s.getId().toString());
+                    log.info("Process recorded with uuid: {}", s.getUuidOrchestratorProcess());
                     insertSteps(persistProcess, process.steps);
                 });
 
@@ -100,7 +100,7 @@ public class OrchestratorService {
         Flux<OrchestratorProcessStep> persistedProcessSteps = orchestratorProcessStepRepository.saveAll(stepsPersist);
         persistedProcessSteps.subscribe(s ->
         {
-            log.info("Process steps recorded with process id: " + s.getOrchestratorProcessId().toString());
+            log.info("Process steps recorded with process id: {}", s.getOrchestratorProcessId().toString());
         });
     }
 

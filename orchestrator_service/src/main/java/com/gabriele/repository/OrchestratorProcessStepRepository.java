@@ -11,7 +11,6 @@ import com.gabriele.entity.OrchestratorProcessStep;
 import reactor.core.publisher.Flux;
 
 @Repository
-public interface OrchestratorProcessStepRepository extends ReactiveCrudRepository<OrchestratorProcessStep, UUID> {
+public interface OrchestratorProcessStepRepository extends ReactiveCrudRepository<OrchestratorProcessStep, Long> {
 
-	Flux<List<OrchestratorProcessStep>> findAllByOrchestratorProcessId(String processId);
 }
