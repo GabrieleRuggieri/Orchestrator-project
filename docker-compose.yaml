@@ -39,21 +39,21 @@ services:
       - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
       - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
 
-  # orchestrator:
-  #   build: ./orchestrator_service/
-  #   image: orchestrator
-  #   ports:
-  #     - 8083:8083
-  #   hostname: orchestrator
-  #   container_name: orchestrator
-  #   networks:
-  #     - network-kafka
-  #   environment:
-  #     - SERVER_SERVLET_CONTEXT_PATH=/orchestrator-service
-  #     - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+  orchestrator:
+    build: ./orchestrator_service/
+    image: orchestrator
+    ports:
+      - "8083:8083"
+    hostname: orchestrator
+    container_name: orchestrator
+    networks:
+      - network-kafka
+    environment:
+      - SERVER_SERVLET_CONTEXT_PATH=/orchestrator-service
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
 
   order-service:
-#    build: ./order_service/
+    #    build: ./order_service/
     build:
       context: ./order_service/
       dockerfile: Dockerfile
@@ -75,7 +75,7 @@ services:
     build: ./payment_service/
     image: payment-service
     ports:
-      - 8082:8082
+      - "8082:8082"
     hostname: payment
     container_name: payment-service
     networks:
@@ -87,7 +87,7 @@ services:
       - SPRING_DATASOURCE_PASSWORD=admin
 
   inventory-service:
-#    build: ./inventory_service/
+    #    build: ./inventory_service/
     build:
       context: ./inventory_service/
       dockerfile: Dockerfile
