@@ -11,10 +11,10 @@ server:
 springdoc:
   api-docs:
     enabled: true
-    path: /order-service/v3/api-docs
+    path: /orchestrator-service/v3/api-docs
   swagger-ui:
     enabled: true
-    path: /order-service/swagger-ui.html
+    path: /orchestrator-service/swagger-ui.html
     layout: BaseLayout
     operationsSorter: method
 

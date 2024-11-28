@@ -17,11 +17,11 @@ import io.r2dbc.spi.ConnectionFactory;
 @Slf4j
 @SpringBootApplication
 @ComponentScan(basePackages = "com.gabriele.*")
-public class SpringbootApplication {
+public class OrchestratorServiceApplication {
 
     public static void main(String[] args) {
         //System.setProperty("server.servlet.context-path", "/orchestrator-service");
-        SpringApplication.run(SpringbootApplication.class, args);
+        SpringApplication.run(OrchestratorServiceApplication.class, args);
     }
 
     @EventListener(ApplicationReadyEvent.class)

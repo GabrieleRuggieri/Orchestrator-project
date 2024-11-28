@@ -40,8 +40,11 @@ services:
       - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
 
   orchestrator:
-    build: ./orchestrator_service/
-    image: orchestrator
+    #    build: ./orchestrator_service/
+    build:
+      context: ./orchestrator_service/
+      dockerfile: Dockerfile
+    image: orchestrator-service
     ports:
       - "8083:8083"
     hostname: orchestrator
