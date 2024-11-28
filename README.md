@@ -97,24 +97,10 @@ Process can be retrieved from Orchestrator Service REST API
 
 When all services are up and running, go to below URL
 
-http://localhost:8080/order-service/swagger-ui/index.html#/
+http://localhost:8080/order-service/swagger-ui/index.html
 
 Try creating an Order with below sample JSON request
-Customer with Id = 2 has inciefficient funds to pay for the Order Item.
+A customer with inciefficient funds to pay for the Order Item.
 This will result in a failed payment debit attempt. In continuation the Order will be updated from the event, as **CANCELLED**;
-
-/order/create
-
-    {
-      "customerId": 2,
-      "itemId": "a9112c62-0206-4711-beaf-220c2d1bbfb0"
-    }
-
-
-![enter image description here](/images/notnoughfunds.PNG)
-
-/order/all
-
-![enter image description here](/images/ordercancelled.PNG)
 
 Fell free to grab a copy of this sample code, and play it yourself.
